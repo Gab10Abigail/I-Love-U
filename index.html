@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You Buat Yang Buka😁</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap'); /* Import font Boogaloo */
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black; /* Background hitam */
+            overflow: hidden; /* Menghindari scroll bar */
+            position: relative;
+        }
+
+        .button-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .animated-button {
+            width: 150px;
+            height: 150px;
+            background: url('tombol.jpg') no-repeat center center;
+            background-size: cover;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.5s ease, opacity 0.5s ease; /* Transisi untuk animasi */
+        }
+
+        .animated-button.clicked {
+            transform: scale(1.5); /* Membesar saat tombol ditekan */
+            opacity: 0; /* Pudar saat tombol ditekan */
+        }
+
+        .love-container {
+            position: absolute;
+            display: none; /* Sembunyikan hingga tombol ditekan */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Pusatkan di tengah */
+        }
+
+        .love-path {
+            stroke: #8a2be2; /* Warna neon ungu */
+            stroke-width: 0.3; /* Garis tipis */
+            fill: none;
+            stroke-dasharray: 5000; /* Panjang total garis disesuaikan untuk animasi lambat */
+            stroke-dashoffset: 5000; /* Mengatur garis untuk tidak terlihat */
+            filter: drop-shadow(0 0 25px #8a2be2); /* Efek garis bercahaya */
+            animation: drawLove 1620s ease forwards; /* Durasi animasi 1620 detik (27 menit) */
+        }
+
+        @keyframes drawLove {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes drawLoveReverse {
+            from {
+                stroke-dashoffset: 0;
+            }
+            to {
+                stroke-dashoffset: 5000;
+            }
+        }
+
+        .firefly {
+            position: absolute;
+            width: 15px; /* Ukuran kunang-kunang */
+            height: 15px;
+            background: url('kunang.png') no-repeat center center;
+            background-size: cover;
+            filter: drop-shadow(0 0 15px #ffff00); /* Efek bercahaya kuning */
+            animation: fireflyBlink 1s infinite, fireflyMove 5s infinite; /* Animasi kelap kelip dan gerakan */
+        }
+
+        @keyframes fireflyBlink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes fireflyMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(calc(30px * (random() - 0.5)), calc(30px * (random() - 0.5)));
+            }
+        }
+
+        .text {
+            font-family: 'Boogaloo', cursive; /* Mengatur font Boogaloo */
+            color: white;
+            font-size: 20px;
+            margin-top: 20px; /* Jarak antara tombol dan teks */
+            transition: opacity 0.5s ease; /* Transisi untuk menghilang */
+        }
+
+        .text.hidden {
+            opacity: 0; /* Teks menghilang */
+        }
+
+        .typing-text {
+            font-family: 'Boogaloo', cursive; /* Mengatur font Boogaloo */
+            color: white;
+            font-size: 24px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10; /* Menempatkan teks di atas elemen lain */
+            opacity: 0; /* Teks awalnya tidak terlihat */
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .15em solid white; /* Efek kursor mengetik */
+            animation: typing 10s steps(45, end), blink-caret .75s step-end infinite, bounce 2s infinite; /* Durasi animasi mengetik diperpanjang */
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: white; }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translate(-50%, -50%) translateY(0);
+            }
+            50% {
+                transform: translate(-50%, -50%) translateY(-10px);
+            }
+        }
+
+        .footer-text {
+            font-family: 'Arial', sans-serif; /* Font standar */
+            color: white;
+            font-size: 14px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 10; /* Menempatkan teks di atas elemen lain */
+        }
+
+        .bubble-heart {
+            position: absolute;
+            font-size: 24px; /* Ukuran hati */
+            opacity: 0;
+            animation: bubble 10s infinite;
+            filter: drop-shadow(0 0 10px red); /* Efek bercahaya */
+        }
+
+        @keyframes bubble {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .bubble-heart:nth-child(1) { color: #FFB6C1; } /* Pastel pink */
+        .bubble-heart:nth-child(2) { color: #FFDAB9; } /* Peach puff */
+        .bubble-heart:nth-child(3) { color: #E0FFFF; } /* Light cyan */
+        .bubble-heart:nth-child(4) { color: #E6E6FA; } /* Lavender */
+        .bubble-heart:nth-child(5) { color: #F0E68C; } /* Khaki */
+        .bubble-heart:nth-child(6) { color: #FFB6C1; } /* Pastel pink */
+        .bubble-heart:nth-child(7) { color: #FFE4E1; } /* Misty rose */
+        .bubble-heart:nth-child(8) { color: #D3FFD3; } /* Pale green */
+        .bubble-heart:nth-child(9) { color: #FFCCCB; } /* Misty rose */
+        .bubble-heart:nth-child(10) { color: #B0E0E6; } /* Powder blue */
+
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="animated-button" onclick="showAudioAndLine()"></button>
+        <div class="text">Di click bro wkwk</div>
+        <div class="typing-text">I Love You So...</div> <!-- Teks dengan animasi mengetik -->
+    </div>
+
+    <!-- SVG untuk menggambar bentuk hati -->
+    <svg class="love-container" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+        <!-- Garis LOVE -->
+        <path class="love-path" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+
+    <audio id="audio" preload="auto">
+        <source src="juh.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Teks di pojok kiri bawah -->
+    <div class="footer-text">Project By : PanPanDevelopment®</div>
+
+    <!-- Kontainer untuk elemen hati gelembung -->
+    <div class="bubble-container"></div>
+
+    <script>
+        function showAudioAndLine() {
+            // Memulai pemutaran audio
+            const audio = document.getElementById('audio');
+            audio.play();
+
+            // Menampilkan elemen garis LOVE
+            const loveContainer = document.querySelector('.love-container');
+            loveContainer.style.display = 'block';
+
+            // Menghapus kunang-kunang yang ada sebelumnya
+            document.querySelectorAll('.firefly').forEach(firefly => firefly.remove());
+
+            // Menambahkan beberapa kunang-kunang dengan animasi
+            for (let i = 0; i < 10; i++) {
+                const firefly = document.createElement('div');
+                firefly.classList.add('firefly');
+                firefly.style.left = Math.random() * 100 + 'vw'; // Posisi acak di horizontal
+                firefly.style.top = Math.random() * 100 + 'vh';  // Posisi acak di vertical
+                firefly.style.animationDuration = Math.random() * 3 + 2 + 's'; // Durasi animasi acak
+                document.body.appendChild(firefly);
+            }
+
+            // Menghilangkan tombol dan teks
+            const button = document.querySelector('.animated-button');
+            const text = document.querySelector('.text');
+            button.classList.add('clicked');
+            text.classList.add('hidden');
+
+            // Menampilkan teks mengetik setelah 27 menit (1620 detik)
+            setTimeout(() => {
+                const typingText = document.querySelector('.typing-text');
+                typingText.style.opacity = 1; // Menampilkan teks mengetik
+
+                // Setelah 2 menit, mulai animasi mundur garis LOVE
+                setTimeout(() => {
+                    const lovePath = document.querySelector('.love-path');
+                    lovePath.style.animation = 'drawLoveReverse 300s linear forwards'; // 5 menit (300 detik) untuk animasi mundur
+                }, 120000); // 2 menit (120000 milidetik)
+
+                // Menambahkan elemen hati setelah 27 menit
+                const bubbleContainer = document.querySelector('.bubble-container');
+                for (let i = 0; i < 20; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('bubble-heart');
+                    heart.textContent = '❤';
+                    heart.style.left = Math.random() * 100 + 'vw'; // Posisi acak di horizontal
+                    heart.style.animationDuration = Math.random() * 5 + 5 + 's'; // Durasi animasi acak
+                    bubbleContainer.appendChild(heart);
+                }
+            }, 38000); // 27 menit dalam milidetik
+        }
+    </script>
+</body>
+</html>
